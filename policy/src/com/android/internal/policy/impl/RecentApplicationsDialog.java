@@ -34,6 +34,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Display;
+import android.view.Surface;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -169,8 +171,10 @@ public class RecentApplicationsDialog extends Dialog implements OnClickListener 
         final Resources resources = context.getResources();
         mIconSize = (int) resources.getDimension(android.R.dimen.app_icon_size);
 
-        if (currRecentAppsNum == NUM_BUTTONS) // No change
+        if (currRecentAppsNum == NUM_BUTTONS)  { // No change
+	    setWindowParams();
             return;
+	}
 
         if (NUM_BUTTONS != 8 && NUM_BUTTONS != 12 && NUM_BUTTONS != 15)
             NUM_BUTTONS = 8; // Load 8 by default
@@ -208,9 +212,10 @@ public class RecentApplicationsDialog extends Dialog implements OnClickListener 
 
     private void setWindowParams() {
         Window window = getWindow();
+	Display display = window.getWindowManager().getDefaultDisplay();
         final WindowManager.LayoutParams params = window.getAttributes();
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+	params.width = display.getWidth();
+        params.height = display.getHeight();
         window.setAttributes(params);
         window.setFlags(0, WindowManager.LayoutParams.FLAG_DIM_BEHIND);
     }
