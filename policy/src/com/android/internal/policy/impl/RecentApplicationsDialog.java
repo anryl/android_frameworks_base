@@ -172,7 +172,7 @@ public class RecentApplicationsDialog extends Dialog implements OnClickListener 
         mIconSize = (int) resources.getDimension(android.R.dimen.app_icon_size);
 
         if (currRecentAppsNum == NUM_BUTTONS)  { // No change
-	    setWindowParams();
+            setWindowParams();
             return;
 	}
 
@@ -212,9 +212,9 @@ public class RecentApplicationsDialog extends Dialog implements OnClickListener 
 
     private void setWindowParams() {
         Window window = getWindow();
-	Display display = window.getWindowManager().getDefaultDisplay();
+        Display display = window.getWindowManager().getDefaultDisplay();
         final WindowManager.LayoutParams params = window.getAttributes();
-	params.width = display.getWidth();
+        params.width = display.getWidth();
         params.height = display.getHeight();
         window.setAttributes(params);
         window.setFlags(0, WindowManager.LayoutParams.FLAG_DIM_BEHIND);
